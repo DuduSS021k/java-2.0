@@ -1,0 +1,37 @@
+package atividade;
+
+public class TesteConta {
+
+    public static void main(String[] args) {
+
+        ContaBancaria conta = new ContaBancaria(300, 200);
+
+        try {
+            System.out.println("Saldo inicial: " + conta.getSaldo());
+            System.out.println("Saldo com limite: " + conta.getSaldoComLimite());
+
+            conta.depositar(500);
+            System.out.println("\nDepósito de R$ 500 realizado.");
+            System.out.println("Saldo atual: " + conta.getSaldo());
+
+            conta.sacar(400);
+            System.out.println("\nSaque de R$ 400 realizado.");
+            System.out.println("Saldo atual: " + conta.getSaldo());
+
+            // Exemplos de erros
+            System.out.println("\nTentando sacar R$ 600 (erro esperado)...");
+            conta.sacar(600);
+
+        } catch (ContaException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        try {
+            System.out.println("\nTentando depositar R$ 1500 (erro esperado)...");
+            conta.depositar(1500);
+        } catch (ContaException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+}
+
