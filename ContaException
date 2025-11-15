@@ -1,0 +1,9 @@
+package atividade;
+
+public class ContaException extends Exception {
+
+    // Construtor padrão que chama o construtor da superclasse.
+    public ContaException(String _mensagem) {
+        super(_mensagem);
+    }
+}
