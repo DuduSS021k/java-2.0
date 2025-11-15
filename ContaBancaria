@@ -1,0 +1,62 @@
+package atividade;
+
+public class ContaBancaria {
+
+    private double saldo;   // Saldo da conta
+    private double limite;  // Limite do cheque especial
+
+    // Construtor da classe
+    public ContaBancaria(double valorSaldo, double valorLimite) {
+        this.saldo = valorSaldo;
+        this.limite = valorLimite;
+    }
+
+    // Retorna o saldo
+    public double getSaldo() {
+        return saldo;
+    }
+
+    // Retorna o limite (protected)
+    protected double getLimite() {
+        return limite;
+    }
+
+    // Retorna saldo + limite
+    public double getSaldoComLimite() {
+        return saldo + limite;
+    }
+
+    // Realiza saque respeitando as regras
+    public boolean sacar(double valor) throws ContaException {
+
+        if (valor <= 0) {
+            throw new ContaException("Valor do saque deve ser maior que zero.");
+        }
+
+        if (valor > 500) {
+            throw new ContaException("Saque não permitido: valor superior a R$ 500,00.");
+        }
+
+        if (saldo + limite - valor < 0) {
+            throw new ContaException("Saque não permitido: saldo insuficiente considerando o limite.");
+        }
+
+        saldo -= valor;
+        return true;
+    }
+
+    // Realiza depósito respeitando as regras
+    public void depositar(double valor) throws ContaException {
+
+        if (valor <= 0) {
+            throw new ContaException("Valor do depósito deve ser maior que zero.");
+        }
+
+        if (valor > 1000) {
+            throw new ContaException("Depósito não permitido: valor superior a R$ 1.000,00.");
+        }
+
+        saldo += valor;
+    }
+}
+
